@@ -1,13 +1,18 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Sign from "./pages/Sign";
 import User from "./pages/User";
 
+import './app.css';
+import Footer from "./components/Footer/Footer";
+
 function App() {
     return (
         <>
           {/* navbar */}
+          <NavBar />
 
           {/* 
             routes
@@ -23,10 +28,12 @@ function App() {
               <Route path="/error" end element={<Error />} />
             </Routes>
           </BrowserRouter>
+
           {/* outlet */}
           <Outlet />
-          
+
           {/* footer */}
+          <Footer />
         </>
     );
 }
