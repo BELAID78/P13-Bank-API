@@ -1,19 +1,37 @@
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faRightFromBracket, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { UserLoginContext } from '../../App'
 import NavBarItem from '../NavBarItem/NavBarItem'
 import NavBarLogo from '../NavBarLogo/NavBarLogo'
 import './navbar.css'
 
 function NavBar() {
+    const {isLoggedIn} = useContext(UserLoginContext);
+
     return (
         <nav className="main-nav">
             <NavBarLogo />
             <div>
-                <NavBarItem link='/sign'>
-                    <FontAwesomeIcon icon={faUserCircle} />
-                    Sign In
-                </NavBarItem>
+                {
+                    !isLoggedIn && <NavBarItem link='/sign'>
+                        <FontAwesomeIcon icon={faUserCircle} />
+                        Sign In
+                    </NavBarItem>
+                }
+                {
+                    isLoggedIn && <>
+                        <NavBarItem link='/sign'>
+                            <FontAwesomeIcon icon={faUserCircle} />
+                            Tony
+                        </NavBarItem>
+
+                        <NavBarItem link='/sign'>
+                            <FontAwesomeIcon icon={faRightFromBracket} />
+                            Sign Out
+                        </NavBarItem>
+                    </>
+                }
             </div>
         </nav>
     )
