@@ -1,6 +1,10 @@
+import SignForm from "../components/SignForm/SignForm"
+
 function Sign() {
     return (
-        <div>Sign</div>
+        <main className="main bg-dark">
+            <SignForm />
+        </main>
     )
 }
 
