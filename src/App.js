@@ -7,33 +7,41 @@ import User from "./pages/User";
 
 import './app.css';
 import Footer from "./components/Footer/Footer";
+import React, { useState } from "react";
+
+export const UserLoginContext = React.createContext();
 
 function App() {
+  
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     return (
         <>
-          {/* navbar */}
-          <NavBar />
+          <UserLoginContext.Provider value={ {isLoggedIn, setIsLoggedIn} }>
+            {/* navbar */}
+            <NavBar />
 
-          {/* 
-            routes
-              /
-              /sign 
-              /user
-          */}
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" end element={<Home />} />
-              <Route path="/sign" end element={<Sign />} />
-              <Route path="/user" end element={<User />} />
-              <Route path="/error" end element={<Error />} />
-            </Routes>
-          </BrowserRouter>
+            {/* 
+              routes
+                /
+                /sign 
+                /user
+            */}
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" end element={<Home />} />
+                <Route path="/sign" end element={<Sign />} />
+                <Route path="/user" end element={<User />} />
+                <Route path="/error" end element={<Error />} />
+              </Routes>
+            </BrowserRouter>
 
-          {/* outlet */}
-          <Outlet />
+            {/* outlet */}
+            <Outlet />
 
-          {/* footer */}
-          <Footer />
+            {/* footer */}
+            <Footer />
+          </UserLoginContext.Provider>
         </>
     );
 }
