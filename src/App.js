@@ -33,6 +33,7 @@ function App() {
                 <Route path="/sign" end element={<Sign />} />
                 <Route path="/user" end element={<User />} />
                 <Route path="/error" end element={<Error />} />
+                <Route path="/*" end element={<Error />} />
               </Routes>
             </BrowserRouter>
 
