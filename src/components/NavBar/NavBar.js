@@ -1,6 +1,6 @@
 import { faRightFromBracket, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { UserLoginContext } from '../../App'
 import NavBarItem from '../NavBarItem/NavBarItem'
 import NavBarLogo from '../NavBarLogo/NavBarLogo'
@@ -21,12 +21,12 @@ function NavBar() {
                 }
                 {
                     isLoggedIn && <>
-                        <NavBarItem link='/sign'>
+                        <NavBarItem link='#'>
                             <FontAwesomeIcon icon={faUserCircle} />
                             Tony
                         </NavBarItem>
 
-                        <NavBarItem link='/sign'>
+                        <NavBarItem link='/'>
                             <FontAwesomeIcon icon={faRightFromBracket} />
                             Sign Out
                         </NavBarItem>
