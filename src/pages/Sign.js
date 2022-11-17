@@ -4,7 +4,7 @@ import { UserLoginContext } from '../App';
 
 function Sign() {
 
-    const {isLoggedIn, setIsLoggedIn} = useContext(UserLoginContext);
+    const {setIsLoggedIn} = useContext(UserLoginContext);
 
     setIsLoggedIn(false);
 

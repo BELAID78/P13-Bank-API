@@ -4,7 +4,7 @@ import Features from '../components/Features/Features';
 import Hero from '../components/Hero/Hero';
 
 function Home() {
-    const {isLoggedIn, setIsLoggedIn} = useContext(UserLoginContext);
+    const {setIsLoggedIn} = useContext(UserLoginContext);
 
     setIsLoggedIn(false);
     

@@ -5,7 +5,7 @@ import Transaction from '../components/Transaction/Transaction';
 import transactions from '../__mock__/transactions';
 
 function User() {
-    const {isLoggedIn, setIsLoggedIn} = useContext(UserLoginContext);
+    const {setIsLoggedIn} = useContext(UserLoginContext);
 
     setIsLoggedIn(true);
 
