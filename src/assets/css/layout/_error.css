@@ -1,0 +1,23 @@
+.error-code {
+    color: #00bc78;
+    font-size: 70px;
+    font-weight: bolder;
+}
+
+.error-code span {
+    color: #005835;
+}
+
+.error-description {
+    font-size: 24px;
+}
+
+.redirect {
+    font-size: 24px;
+}
+
+.redirect a {
+    text-decoration: underline;
+    color: #005835;
+    font-weight: bolder;
+}
