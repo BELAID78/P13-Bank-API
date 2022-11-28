@@ -14,6 +14,9 @@ export const userSlice = createSlice({
       insertJWT: (state, action) => {
         return {...state, authenticated: true, jwt: action.payload}
       },
+      updateProfile: (state, action) => {
+        return {...state, authenticated: true, user: action.payload}
+      }
     },
   });
   
