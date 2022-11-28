@@ -21,4 +21,26 @@
     return data;
 }
 
+/**
+ * update user profile data
+ * 
+ * @param {object} profile 
+ * @param {string} token 
+ * @returns {Promise}
+ */
+export const updateProfile = async (profile, token) => {
+    const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(profile)
+    });
+
+    const data = await response.json();
+
+    return data;
+}
+
 export default loginService
