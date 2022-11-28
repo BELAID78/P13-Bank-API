@@ -1,8 +1,8 @@
 import './submitButton.css'
 
-function SubmitButton({link, text}) {
+function SubmitButton({link, text, onclick}) {
     return (
-        <a href={link} className="sign-in-button">{text}</a> 
+        <a href={link} onClick={onclick} className="sign-in-button">{text}</a> 
     )
 }
 
