@@ -8,3 +8,15 @@
 
     return JSON.parse(data)
 }
+
+/**
+ * update user data in localStorage
+ * 
+ * @param {object} data 
+ * @returns {void}
+ */
+export const updateUserData = data => {
+    const serializeData = JSON.stringify(data)
+
+    localStorage.setItem('user-data', serializeData)
+}
