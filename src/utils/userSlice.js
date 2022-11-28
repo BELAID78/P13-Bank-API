@@ -11,11 +11,14 @@ export const userSlice = createSlice({
       insertProfile: (state, action) => {
         return {...state, user: action.payload}
       },
+      insertJWT: (state, action) => {
+        return {...state, authenticated: true, jwt: action.payload}
+      },
     },
   });
-
+  
   // this is for dispatch
   export const { insertProfile } = userSlice.actions;
-
+  
   // this is for configureStore
   export default userSlice.reducer;
