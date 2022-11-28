@@ -16,6 +16,13 @@ export const userSlice = createSlice({
       },
       updateProfile: (state, action) => {
         return {...state, authenticated: true, user: action.payload}
+      },
+      logout: (state, action) => {
+        return {
+            authenticated: false,
+            user: {},
+            jwt: ''
+        }
       }
     },
   });
