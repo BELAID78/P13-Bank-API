@@ -28,7 +28,7 @@ export const userSlice = createSlice({
   });
   
   // this is for dispatch
-  export const { insertProfile } = userSlice.actions;
+  export const { insertProfile, insertJWT ,updateProfile ,logout } = userSlice.actions;
   
   // this is for configureStore
   export default userSlice.reducer;
