@@ -1,17 +1,21 @@
 import { useState } from 'react'
+
 import CheckBoxInput from '../CheckBoxInput/CheckBoxInput'
 import SignFormHeader from '../SignFormHeader/SignFormHeader'
 import SubmitButton from '../SubmitButton/SubmitButton'
 import TextInput from '../TextInput/TextInput'
+
+import loginService from '../../services/loginService'
+
 import './signForm.css'
 
 function SignForm() {
-    const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
 
     const [password, setPassword] = useState('');
 
-    const handleUserNameChange = e => {
-        setUserName(e.target.value)
+    const handleEmailChange = e => {
+        setEmail(e.target.value)
     }
 
     const handlePasswordChange = e => {
@@ -21,7 +25,25 @@ function SignForm() {
     const handleFormSubmit = e => {
         e.preventDefault();
 
-        console.table([userName,password])
+        const credentials = {
+            email: email,
+            password: password
+        }
+
+        loginService(credentials).then(data => {
+
+            if(data.status === 500) {
+                //redirect to error page
+            }else if(data.status === 400) {
+                //Error: User not found!
+            }else{
+                //set token in state
+                //redirect to user page
+            }
+
+        }).catch(err => {
+            //redirect to error page
+        })
     }
 
     return (
@@ -30,7 +52,7 @@ function SignForm() {
             <SignFormHeader />
 
             <form>
-                <TextInput onchange={handleUserNameChange} value={userName} id='username' labelText='Username' />
+                <TextInput onchange={handleEmailChange} value={email} id='username' labelText='Username' />
 
                 <TextInput onchange={handlePasswordChange} value={password} id='password' labelText='Password' />
 
