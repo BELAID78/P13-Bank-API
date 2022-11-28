@@ -43,4 +43,25 @@ export const updateProfile = async (profile, token) => {
     return data;
 }
 
+/**
+ * read user profile 
+ * 
+ * @param {string} token 
+ * @returns {Promise}
+ */
+export const readProfile = async (token) => {
+    const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(token)
+    });
+
+    const data = await response.json();
+
+    return data;
+}
+
 export default loginService
