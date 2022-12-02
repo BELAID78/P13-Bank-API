@@ -8,11 +8,19 @@ import TextInput from '../TextInput/TextInput'
 import loginService from '../../services/loginService'
 
 import './signForm.css'
+import { updateUserData } from '../../utils/localStorageHelper'
+import { useDispatch } from 'react-redux'
+import { insertJWT } from '../../utils/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 function SignForm() {
     const [email, setEmail] = useState('');
 
     const [password, setPassword] = useState('');
+
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const handleEmailChange = e => {
         setEmail(e.target.value)
@@ -37,8 +45,18 @@ function SignForm() {
             }else if(data.status === 400) {
                 //Error: User not found!
             }else{
+                //set token in local storage
+                updateUserData({
+                    authenticated: true,
+                    user: {},
+                    jwt: data.body.token
+                });
+
                 //set token in state
+                dispatch(insertJWT(data.body.token));
+
                 //redirect to user page
+                navigate('/user');
             }
 
         }).catch(err => {
