@@ -1,11 +1,12 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './navBarItem.css'
 
 function NavBarItem({link, children}) {
     return (
-        <a className="main-nav-item" href={link}>
+        <NavLink to={link} className='main-nav-item' >
             {children}
-        </a>
+        </NavLink>
     )
 }
 
