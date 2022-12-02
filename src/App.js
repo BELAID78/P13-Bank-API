@@ -7,19 +7,19 @@ import User from "./pages/User";
 
 import './app.css';
 import Footer from "./components/Footer/Footer";
-import React, { useState } from "react";
-
-export const UserLoginContext = React.createContext();
+import React from "react";
+import { useSelector } from "react-redux";
 
 function App() {
   
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const isLoggedIn = useSelector(state => state.user.authenticated)
 
     return (
         <>
-          <UserLoginContext.Provider value={ {isLoggedIn, setIsLoggedIn} }>
+          <BrowserRouter>
+
             {/* navbar */}
-            <NavBar />
+            <NavBar isLoggedIn={isLoggedIn} />
 
             {/* 
               routes
@@ -27,22 +27,22 @@ function App() {
                 /sign 
                 /user
             */}
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" end element={<Home />} />
-                <Route path="/sign" end element={<Sign />} />
-                <Route path="/user" end element={<User />} />
-                <Route path="/error" end element={<Error />} />
-                <Route path="/*" end element={<Error />} />
-              </Routes>
-            </BrowserRouter>
+            
+            <Routes>
+              <Route path="/" end element={<Home />} />
+              <Route path="/sign" end element={<Sign />} />
+              <Route path="/user" end element={<User />} />
+              <Route path="/error" end element={<Error />} />
+              <Route path="/*" end element={<Error />} />
+            </Routes>
+            
 
             {/* outlet */}
             <Outlet />
 
             {/* footer */}
             <Footer />
-          </UserLoginContext.Provider>
+          </BrowserRouter>
         </>
     );
 }
