@@ -1,7 +1,8 @@
 function FullName({userFullName}) {
+    const {firstName, lastName} = userFullName
     return (
             <>
-                {userFullName}
+                {firstName} {lastName}
             </>
     )
 }
