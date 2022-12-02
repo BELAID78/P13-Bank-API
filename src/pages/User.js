@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { UserLoginContext } from '../App';
 import Header from '../components/Header/Header';
 import Transaction from '../components/Transaction/Transaction';
 import { readProfile } from '../services/loginService';
@@ -8,6 +9,7 @@ import { updateProfile } from '../utils/userSlice';
 import transactions from '../__mock__/transactions';
 
 function User() {
+    const {setIsLoggedIn} = useContext(UserLoginContext);
 
     const user = readUserData();
 
@@ -28,6 +30,8 @@ function User() {
             }
         }).catch(err => console.log(err));
     }, [user.jwt, dispatch])
+
+    setIsLoggedIn(true);
 
     return (
         <main className="main bg-dark">
