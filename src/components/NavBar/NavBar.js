@@ -18,7 +18,7 @@ function NavBar({isLoggedIn}) {
                 }
                 {
                     isLoggedIn && <>
-                        <NavBarItem link='#'>
+                        <NavBarItem link='/user'>
                             <FontAwesomeIcon icon={faUserCircle} />
                             Tony
                         </NavBarItem>
