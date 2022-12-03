@@ -20,3 +20,12 @@ export const updateUserData = data => {
 
     localStorage.setItem('user-data', serializeData)
 }
+
+/**
+ * remove user data from localStorage
+ * 
+ * @returns {void}
+ */
+export const removeUserData = () => {
+    localStorage.removeItem('user-data');
+}
