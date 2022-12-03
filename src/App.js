@@ -30,10 +30,10 @@ function App() {
             
             <Routes>
               <Route path="/" end element={<Home />} />
-              <Route path="/sign" end element={<Sign />} />
-              <Route path="/user" end element={<User />} />
-              <Route path="/error" end element={<Error />} />
-              <Route path="/*" end element={<Error />} />
+              <Route path="/sign" element={<Sign />} />
+              <Route path="/user" element={<User />} />
+              <Route path="/error" element={<Error />} />
+              <Route path="/*"  element={<Error />} />
             </Routes>
             
 
