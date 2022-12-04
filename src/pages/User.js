@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Transaction from '../components/Transaction/Transaction';
 import { readProfile } from '../services/loginService';
@@ -15,6 +16,8 @@ function User() {
 
     const userState = useSelector(state => state.user)
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         readProfile(user.jwt).then(response => {
             if(response.status === 200) {
@@ -25,6 +28,7 @@ function User() {
                 updateUserData({...user, user: response.body});
             }else{
                 //redirect to error page
+                navigate('/error')
             }
         }).catch(err => console.log(err));
     }, [user.jwt, dispatch])
