@@ -9,6 +9,7 @@ import './app.css';
 import Footer from "./components/Footer/Footer";
 import React from "react";
 import { useSelector } from "react-redux";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   
@@ -30,15 +31,13 @@ function App() {
             
             <Routes>
               <Route path="/" end element={<Home />} />
-              <Route path="/sign" element={<Sign />} />
-              <Route path="/user" element={<User />} />
+                <Route path="/sign" element={<Sign />} />
+                <Route path="/user" element={<PrivateRoute />}>
+                  <Route path="/user" element={<User />} />
+                </Route>
               <Route path="/error" element={<Error />} />
               <Route path="/*"  element={<Error />} />
             </Routes>
-            
-
-            {/* outlet */}
-            <Outlet />
 
             {/* footer */}
             <Footer />
