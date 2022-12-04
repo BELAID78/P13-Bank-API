@@ -62,6 +62,7 @@ function SignForm() {
 
         }).catch(err => {
             //redirect to error page
+            navigate('/error');
         })
     }
 
