@@ -42,6 +42,7 @@ function SignForm() {
 
             if(data.status === 500) {
                 //redirect to error page
+                navigate('/error');
             }else if(data.status === 400) {
                 //Error: User not found!
             }else{
