@@ -30,7 +30,9 @@ function User() {
                 //redirect to error page
                 navigate('/error')
             }
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            navigate('/error');
+        });
     }, [user.jwt, dispatch])
 
     return (
