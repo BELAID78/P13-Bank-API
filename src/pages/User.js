@@ -20,16 +20,11 @@ function User() {
 
     useEffect(() => {
         readProfile(user.jwt).then(response => {
-            if(response.status === 200) {
-                //update user profil redux
-                dispatch(updateProfile(response.body))
+            //update user profil redux
+            dispatch(updateProfile(response.body))
 
-                //update user profile in localstorage
-                updateUserData({...user, user: response.body});
-            }else{
-                //redirect to error page
-                navigate('/error')
-            }
+            //update user profile in localstorage
+            updateUserData({...user, user: response.body});
         }).catch(err => {
             navigate('/error');
         });
