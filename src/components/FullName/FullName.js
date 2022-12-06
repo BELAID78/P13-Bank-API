@@ -2,7 +2,7 @@ function FullName({userFullName}) {
     const {firstName, lastName} = userFullName
     return (
             <>
-                {firstName} {lastName}
+                {firstName} {lastName}!
             </>
     )
 }
