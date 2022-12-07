@@ -28,7 +28,7 @@ function User() {
         }).catch(err => {
             navigate('/error');
         });
-    }, [user.jwt, dispatch])
+    }, [user.jwt, dispatch, user, navigate])
 
     return (
         <main className="main bg-dark">

@@ -2,3 +2,38 @@
     color: #fff;
     margin-bottom: 2rem;
 }
+
+.full-name-edit-container {
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.full-name-edit-container input {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    border-radius: 2px;
+    margin: 0px 5px;
+    font-size: 18px;
+}
+
+.full-name-edit-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0px;
+}
+
+.full-name-edit-buttons button {
+    border: none;
+    outline: none;
+    padding: 8px 20px;
+    border-radius: 3px;
+    margin: 0px 5px;
+    width: 90px;
+    cursor: pointer;
+}
