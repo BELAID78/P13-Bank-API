@@ -32,8 +32,9 @@ export const updateProfile = async (profile, token) => {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
         method: 'put',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data'
         },
         body: JSON.stringify(profile)
     });
@@ -53,8 +54,9 @@ export const readProfile = async (token) => {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
         method: 'post',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data'
         },
         body: JSON.stringify(token)
     });
