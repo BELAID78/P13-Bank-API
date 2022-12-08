@@ -12,6 +12,10 @@ function Header({firstName = '', lastName = ''}) {
         setEditForm(editForm => !editForm)
     }
 
+    const handleCancelEdit = () => {
+        setEditForm(false)
+    }
+
     return (
         <div className="header">
             <h1>
@@ -32,7 +36,7 @@ function Header({firstName = '', lastName = ''}) {
 
                             <div className='full-name-edit-buttons'>
                                 <Button text='Save' classname='' />
-                                <Button text='Cancel' classname='' />
+                                <Button text='Cancel' classname='' onclick={handleCancelEdit}/>
                             </div>
                         </form>
                     </div>
