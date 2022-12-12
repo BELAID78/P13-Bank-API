@@ -23,3 +23,8 @@ body {
 .bg-dark {
     background-color: #12002b;
 }
+
+.error-message {
+    color: red;
+    text-align: left;
+}

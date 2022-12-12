@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router-dom'
 function SignForm() {
     const [email, setEmail] = useState('');
 
+    const [userError, setUserError] = useState('');
+
     const [password, setPassword] = useState('');
 
     const dispatch = useDispatch();
@@ -43,9 +45,17 @@ function SignForm() {
             if(data.status === 500) {
                 //redirect to error page
                 navigate('/error');
+
+                //empty the error message
+                setUserError('');
             }else if(data.status === 400) {
-                //Error: User not found!
+                //Error: Error in login user
+                setUserError(data.message);
+
             }else{
+                //empty the error message
+                setUserError('');
+
                 //set token in local storage
                 updateUserData({
                     authenticated: true,
@@ -61,6 +71,9 @@ function SignForm() {
             }
 
         }).catch(err => {
+            //empty the error message
+            setUserError('');
+
             //redirect to error page
             navigate('/error');
         })
@@ -72,6 +85,11 @@ function SignForm() {
             <SignFormHeader />
 
             <form>
+
+                {
+                    userError !== '' && <p className='error-message'>{userError}</p>
+                }
+
                 <TextInput onchange={handleEmailChange} value={email} id='username' labelText='Username' />
 
                 <TextInput type='password' onchange={handlePasswordChange} value={password} id='password' labelText='Password' />
