@@ -74,7 +74,7 @@ function SignForm() {
             <form>
                 <TextInput onchange={handleEmailChange} value={email} id='username' labelText='Username' />
 
-                <TextInput onchange={handlePasswordChange} value={password} id='password' labelText='Password' />
+                <TextInput type='password' onchange={handlePasswordChange} value={password} id='password' labelText='Password' />
 
                 <CheckBoxInput id='remember-me' labelText='Remember me' />
 
