@@ -78,8 +78,8 @@ function Header({firstName = '', lastName = ''}) {
                     <div>
                         <form>
                             <div className='full-name-edit-container'>
-                                <input ref={firstNameRef} type="text" placeholder={firstName} />
-                                <input ref={lastNameRef} type="text" placeholder={lastName} />
+                                <input ref={firstNameRef} type="text" value={firstName} />
+                                <input ref={lastNameRef} type="text" value={lastName} />
                             </div>
 
                             <div className='full-name-edit-buttons'>
