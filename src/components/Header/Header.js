@@ -16,7 +16,6 @@ function Header({firstName = '', lastName = ''}) {
     const dispatch = useDispatch();
     const userState = useSelector(state => state.user)
 
-    console.log(userState);
     
     const handleShowEditForm = () => {
         setEditForm(editForm => !editForm)
@@ -78,8 +77,8 @@ function Header({firstName = '', lastName = ''}) {
                     <div>
                         <form>
                             <div className='full-name-edit-container'>
-                                <input ref={firstNameRef} type="text" value={firstName} />
-                                <input ref={lastNameRef} type="text" value={lastName} />
+                                <input ref={firstNameRef} type="text" defaultValue={firstName} />
+                                <input ref={lastNameRef} type="text" defaultValue={lastName} />
                             </div>
 
                             <div className='full-name-edit-buttons'>

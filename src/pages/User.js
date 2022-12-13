@@ -18,17 +18,19 @@ function User() {
 
     const navigate = useNavigate();
 
+    const userJWT = user.jwt;
+
     useEffect(() => {
-        readProfile(user.jwt).then(response => {
+        readProfile(userJWT).then(response => {
             //update user profil redux
             dispatch(updateProfile(response.body))
 
             //update user profile in localstorage
-            updateUserData({...user, user: response.body});
+            updateUserData({authenticated: true, jwt: userJWT, user: response.body});
         }).catch(err => {
             navigate('/error');
         });
-    }, [user.jwt, dispatch])
+    }, [user.jwt, navigate, userJWT, dispatch])
 
     return (
         <main className="main bg-dark">
