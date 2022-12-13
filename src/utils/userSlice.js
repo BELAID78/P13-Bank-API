@@ -8,16 +8,13 @@ export const userSlice = createSlice({
         jwt: ''
     },
     reducers: {
-      insertProfile: (state, action) => {
-        return {...state, user: action.payload}
-      },
       insertJWT: (state, action) => {
         return {...state, authenticated: true, jwt: action.payload}
       },
       updateProfile: (state, action) => {
-        return {...state, authenticated: true, user: action.payload}
+        return {...state, user: action.payload}
       },
-      logout: (state, action) => {
+      logout: () => {
         return {
             authenticated: false,
             user: {},
@@ -28,7 +25,7 @@ export const userSlice = createSlice({
   });
   
   // this is for dispatch
-  export const { insertProfile, insertJWT ,updateProfile ,logout } = userSlice.actions;
+  export const { insertJWT, updateProfile, logout } = userSlice.actions;
   
   // this is for configureStore
   export default userSlice.reducer;
