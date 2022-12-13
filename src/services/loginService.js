@@ -33,8 +33,8 @@ export const updateProfile = async (profile, token) => {
         method: 'put',
         headers: {
             'Authorization': `Bearer ${token}`,
-            'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data'
+            
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(profile)
     });
