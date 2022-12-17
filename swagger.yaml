@@ -1,0 +1,214 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase
+  version: 1.0.0
+  termsOfService: http://swagger.io/terms/
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /user/accounts:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Account Module
+      summary: Accounts
+      description: get the user bank accounts
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: get user accounts successful
+          schema:
+            $ref: '#/definitions/AccountsResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Account Module
+      summary: Accounts
+      description: get the transaction by account id
+      parameters:
+        - in: path
+          name: accountId
+          type: integer
+          required: true
+          description: Numeric ID of the account to get transactions
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+      responses:
+        '200':
+          description: get user accounts transactions
+          schema:
+            $ref: '#/definitions/TransationResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/transactions:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Transaction
+      description: create transaction note
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
+        - in: body
+          name: create transaction note
+          description: create transaction
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionCreate'
+      responses:
+        '200':
+          description: create transaction note successful
+          schema:
+            $ref: '#/definitions/TransactionCreateResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Transaction
+      description: update transaction category
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: update category
+          description: update transaction category
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionUpdate'
+      responses:
+        '200':
+          description: update transaction category successful
+          schema:
+            $ref: '#/definitions/TransactionUpdateResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  AccountsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            title:
+              type: string
+            amount:
+              type: number
+            description:
+              type: string
+  TransationResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            date:
+              type: string
+            description:
+              type: string
+            ammout:
+              type: number
+            balance:
+              type: number
+            type:
+              type: string
+            note:
+              type: string
+            category:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+  TransactionCreate:
+    type: object
+    properties:
+      note:
+        type: string
+      transaction_id:
+        type: string
+  TransactionCreateResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+  TransactionUpdate:
+    type: object
+    properties:
+      category:
+        type: string
+      transaction_id:
+        type: string
+  TransactionUpdateResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
