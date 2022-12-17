@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
-import Sign from "./pages/Sign";
-import User from "./pages/User";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 import './app.css';
 import Footer from "./components/Footer/Footer";
@@ -25,15 +25,15 @@ function App() {
             {/* 
               routes
                 /
-                /sign 
-                /user
+                /login 
+                /profile
             */}
             
             <Routes>
               <Route path="/" end element={<Home />} />
-                <Route path="/sign" element={<Sign />} />
-                <Route path="/user" element={<PrivateRoute />}>
-                  <Route path="/user" element={<User />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/profile" element={<PrivateRoute />}>
+                  <Route path="/profile" element={<Profile />} />
                 </Route>
               <Route path="/error" element={<Error />} />
               <Route path="/*"  element={<Error />} />

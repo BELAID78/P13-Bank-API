@@ -67,7 +67,7 @@ function SignForm() {
                 dispatch(insertJWT(data.body.token));
 
                 //redirect to user page
-                navigate('/user');
+                navigate('/profile');
             }
 
         }).catch(err => {

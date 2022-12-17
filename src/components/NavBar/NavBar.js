@@ -31,14 +31,14 @@ function NavBar({isLoggedIn}) {
             <NavBarLogo />
             <div>
                 {
-                    !isLoggedIn && <NavBarItem link='/sign'>
+                    !isLoggedIn && <NavBarItem link='/login'>
                         <FontAwesomeIcon icon={faUserCircle} />
                         Sign In
                     </NavBarItem>
                 }
                 {
                     isLoggedIn && <>
-                        <NavBarItem link='/user'>
+                        <NavBarItem link='/profile'>
                             <FontAwesomeIcon icon={faUserCircle} />
                             {userData.user.firstName}
                         </NavBarItem>
