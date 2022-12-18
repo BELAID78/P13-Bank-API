@@ -9,112 +9,139 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /user/accounts:
+  /user/transaction/{id}/forMonth/{currentMonth}:
     get:
       security:
         - Bearer: []
       tags:
-        - Account Module
-      summary: Accounts
-      description: get the user bank accounts
+        - Transaction Module
+      summary: Transaction
+      description: get all the user account transactions for the requested month
       parameters:
         - in: header
           name: Authorization
           type: string
           description: Attach Bearer JWT token
           required: true
+        - in: path
+          name: currentMonth
+          type: string
+          required: true
+          description: string represent the requested month name
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: user account id to specify its transactions
       produces:
         - application/json
       responses:
         '200':
-          description: get user accounts successful
+          description: get user transactions for the searched month successful
           schema:
-            $ref: '#/definitions/AccountsResponse'
+            $ref: '#/definitions/FiltredTransationResponse'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/accounts/{accountId}/transactions:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - Account Module
-      summary: Accounts
-      description: get the transaction by account id
-      parameters:
-        - in: path
-          name: accountId
-          type: integer
-          required: true
-          description: Numeric ID of the account to get transactions
-        - in: header
-          name: Authorization
-          type: string
-          description: Attach Bearer JWT token
-          required: true
-      responses:
-        '200':
-          description: get user accounts transactions
-          schema:
-            $ref: '#/definitions/TransationResponse'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-  /user/transactions:
+  /user/transaction:
     post:
       security:
-        - Bearer: []
+          - Bearer: []
       tags:
-        - Transaction Module
+          - Transaction Module
       summary: Transaction
-      description: create transaction note
+      description: create new transaction
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
           type: string
+          description: Attach Bearer JWT token
           required: true
         - in: body
-          name: create transaction note
-          description: create transaction
+          name: body
+          description: create new transaction
           required: true
           schema:
-            $ref: '#/definitions/TransactionCreate'
+            $ref: '#/definitions/Transaction'
+      produces:
+        - application/json
       responses:
         '200':
-          description: create transaction note successful
+          description: create new user transaction successful
           schema:
-            $ref: '#/definitions/TransactionCreateResponse'
+              $ref: '#/definitions/TransationResponse'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /user/transaction/{id}:
     put:
+      security:
+          - Bearer: []
+      tags:
+          - Transaction Module
+      summary: Transaction
+      description: update transaction
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: id of the updated transaction
+        - in: body
+          name: body
+          description: update the transaction
+          required: true
+          schema:
+            $ref: '#/definitions/Transaction'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: update user transaction successful
+          schema:
+              $ref: '#/definitions/TransationResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/transaction/{deletedField}/{id}:
+    delete:
       security:
         - Bearer: []
       tags:
         - Transaction Module
       summary: Transaction
-      description: update transaction category
+      description: delete transaction content
       parameters:
         - in: header
           name: Authorization
           type: string
           description: Attach Bearer JWT token
           required: true
-        - in: body
-          name: update category
-          description: update transaction category
+        - in: path
+          name: deletedField
+          type: string
+          description: transaction field name to delete its value, ["id", "date", "description" , "amount", "balance", "type", "note", "account_id" , "category"]
           required: true
-          schema:
-            $ref: '#/definitions/TransactionUpdate'
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: transaction id to be deleted
+      produces:
+        - application/json
       responses:
         '200':
-          description: update transaction category successful
+          description: delete the field from transaction successful
           schema:
-            $ref: '#/definitions/TransactionUpdateResponse'
+              $ref: '#/definitions/TransationResponse'
         '400':
           description: Invalid Fields
         '500':
@@ -125,7 +152,33 @@ securityDefinitions:
     name: Authorization
     in: header
 definitions:
-  AccountsResponse:
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+      date:
+        type: string
+      description:
+        type: string
+      ammout:
+        type: number
+      balance:
+        type: number
+      type:
+        type: string
+      note:
+        type: string
+      account_id:
+        type: string
+      category:
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+  FiltredTransationResponse:
     type: object
     properties:
       status:
@@ -135,16 +188,7 @@ definitions:
       body:
         type: array
         items:
-          type: object
-          properties:
-            id:
-              type: string
-            title:
-              type: string
-            amount:
-              type: number
-            description:
-              type: string
+          $ref: '#/definitions/Transaction'
   TransationResponse:
     type: object
     properties:
@@ -155,60 +199,4 @@ definitions:
       body:
         type: array
         items:
-          type: object
-          properties:
-            id:
-              type: string
-            date:
-              type: string
-            description:
-              type: string
-            ammout:
-              type: number
-            balance:
-              type: number
-            type:
-              type: string
-            note:
-              type: string
-            category:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: string
-  TransactionCreate:
-    type: object
-    properties:
-      note:
-        type: string
-      transaction_id:
-        type: string
-  TransactionCreateResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-      body:
-        type: object
-  TransactionUpdate:
-    type: object
-    properties:
-      category:
-        type: string
-      transaction_id:
-        type: string
-  TransactionUpdateResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-      body:
-        type: object
+          $ref: '#/definitions/Transaction'
